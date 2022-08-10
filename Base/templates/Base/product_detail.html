@@ -1,0 +1,130 @@
+{% extends 'Base/basic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% comment %} <a href="{%url 'products' %}">Go back</a>
+<h1>Task :{{product.title}}</h1> 
+<h1>Description :{{product.description}}</h1> 
+<img src="{{product.image.url}}" alt="Sorry there's a problem with your network">
+<h1>price :{{product.price}}</h1>
+<h1>category: {{product.category}}</h1>
+<h1>User: {{product.user}}</h1>
+<h1>Created :{{product.created}}</h1>
+<input type="submit" value="Add to cart"> {% endcomment %}
+{% block scripts %}
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <!-- Material Design Bootstrap -->
+  <!-- Your custom styles (optional) -->
+  <link href="{%static 'Product_detail/css/style.min.css' %}" rel="stylesheet">
+  {% endblock scripts %}
+<body>
+   {% block content %}
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <img src="{{product.image.url}}" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+
+            <div class="mb-3">
+                                         <form action="{%url 'all_category_products' product.category.id %}" method="GET">
+                              <button type="submit" class="badge purple mr-1">{{product.category}}</button></form>
+            </div>
+            <p class="lead">
+              {% comment %} <span class="mr-1">
+                <del>$200</del>
+              </span> {% endcomment %}
+              <span>INR {{product.price}}</span>
+            </p>
+
+            <p class="lead font-weight-bold">{{product.title}}</p>
+            <p class="font-weight-bold">Seller :{{product.user}}</p>
+
+            <p>{{product.description}}</p>
+
+             <form class="d-flex justify-content-left" action="{%url 'create_item' product.id %}" method="POST">
+             {% csrf_token %}
+              <!-- Default input -->
+                                    {% comment %} <input type="submit" value="Add to cart"> {% endcomment %}
+              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+             </form>
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <hr>
+
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 text-center">
+
+          <h4 class="my-4 h4">Additional information</h4>
+
+          <p>Have a good day and enjoy the products offered by us</p>
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+  </main>
+  <!--Main layout-->
+  {% endblock content %}
+  

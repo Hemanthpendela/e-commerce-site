@@ -1,0 +1,17 @@
+{% extends 'Base/basic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block content %}
+<div style="min-height: 200px;"></div></table>
+<div class="text-center">
+ <h3><p>Are you sure you want to delete {{order.order_item.title}}?</p></h3>
+			<form method="POST">
+				{% csrf_token %}
+				<a href="{% url 'products' %}">Cancel</a>
+				<div></div>
+				<button class="btn btn-danger" type="submit" name="Confirm">Delete</button>
+			</form>
+</div>
+	 <div style="min-height: 200px;"></div></table>
+{% endblock content %}
